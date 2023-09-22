@@ -15,7 +15,14 @@ img {
 
 header h1 {
 	text-align: center ;
+	color: blueviolet;
 }
+h2, h3 { line-height:1.2; }
+h2 { color:  rebeccapurple; }
+h3 { color: steelblue; }
+h4 { color: thistle; }
+h5, h6 { color: cornsilk; }
+a { color: mediumaquamarine; }
 
 footer {
 	text-align: center ;
