@@ -5,9 +5,11 @@
 {{ .Content }}
 <ul>
 {{- range.Pages }}
+{{ if or (eq .Section "news") (eq .Section "posts") (eq .Section "notes") -}}
+{{ if not (eq .File.TranslationBaseName "_index") }}
 <li>
 	{{- if .Param "datesinlist" }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time> &ndash; {{ end -}}
-	<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  <a href="{{ .RelPermalink }}">{{ .Section }} / {{ .Title }}</a>
 	{{- if .Param "authorsinlist" }}
 	{{ with .Params.authors }}
 		by 
@@ -15,6 +17,8 @@
 	{{end}}
 	{{ end -}}
 </li>
+{{ end -}}
+{{ end -}}
 {{- end }}
 </ul>
 {{- end }}
