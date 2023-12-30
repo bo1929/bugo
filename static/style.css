@@ -23,13 +23,14 @@ main {
 h1 {
   color: blueviolet;
 }
-h2 { color:  rebeccapurple; }
+h2 { color:  rebeccapurple ; }
 h1, h2 { text-align: center ; }
-h3 { color: steelblue; }
-h2, h3 { line-height:1.2; }
-h4 { color: thistle; }
-h5, h6 { color: cornsilk; }
-a { color: mediumaquamarine; }
+h3 { color: steelblue ; }
+h2, h3 { line-height:1.2 ; }
+h4 { color: thistle ; }
+h5, h6 { color: cornsilk ; }
+a { color: mediumaquamarine ; }
+a:visited{ color: mediumslateblue ; }
 
 footer {
   text-align: center ;
