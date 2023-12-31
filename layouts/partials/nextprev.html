@@ -1,4 +1,8 @@
-{{ if or (eq .Section "articles" ) (eq .Section "updates" ) (eq .Section "news") (eq .Section "posts") -}}
+{{ if or 
+  (eq .Section "news")
+  (eq .Section "posts")
+  (eq .Section "notes")
+}}
   {{ if or .NextInSection .PrevInSection -}}
     <div id="nextprev">
     {{- with .PrevInSection }}

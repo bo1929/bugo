@@ -1,0 +1,12 @@
+{{ if .Params.wtoc }}
+<aside>
+  <header>
+    <a href="#{{ .Title | urlize }}">
+    <h3>{{ .Title }}</h3>
+    </a>
+  </header>
+  {{ .TableOfContents }}
+</aside>
+<a href="#" id="toc-toggle"></a>
+<hr>
+{{ end }}
