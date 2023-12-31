@@ -19,9 +19,9 @@
 <main>
 <header><h1 id="tag_{{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
 <hr>
-{{ partial "toc.html" . }}
+{{- partial "toc.html" . -}}
 <article>
-{{ block "main" . }}
+{{ block "main" . -}}
 {{ .Content }}
 {{ end }}
 {{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}

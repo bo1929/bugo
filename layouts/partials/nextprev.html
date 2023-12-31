@@ -2,16 +2,15 @@
   (eq .Section "news")
   (eq .Section "posts")
   (eq .Section "notes")
-}}
-  {{ if or .NextInSection .PrevInSection -}}
-    <div id="nextprev">
+}} {{- if or .NextInSection .PrevInSection -}}
+<div id="nextprev">
     {{- with .PrevInSection }}
     <a href="{{ .RelPermalink}}"><div id="prevart">Previous:<br>{{.Title}}</div></a>
-    {{ end -}}
+    {{- end -}}
     {{- with .NextInSection -}}
     <a href="{{ .RelPermalink}}"><div id="nextart">Next:<br>{{.Title}}</div></a>
-    {{ end -}}
-    </div>
-    <br clear=both>
-  {{ end -}}
-{{ end -}}
+    {{- end }}
+</div>
+<br clear=both>
+{{- end -}}
+{{- end -}}

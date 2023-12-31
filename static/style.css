@@ -1,46 +1,45 @@
 body {
-  font-family: sans-serif ;
-  background: #1b1b1b ;
-  color: navajowhite ;
-  min-height: 100vh ;
-  max-width: 850px ;
-  padding: 0 16px ;
-  margin: auto ;
+  font-family: sans-serif;
+  background: #1b1b1b;
+  color: navajowhite;
+  min-height: 100vh;
+  max-width: 850px;
+  padding: 0 16px;
+  margin: auto;
 }
 
 img {
-  max-width: 90% ;
-  max-height: 400px ;
-  margin: auto ;
-  display: block ;
+  max-width: 90%;
+  max-height: 400px;
+  margin: auto;
+  display: block;
 }
 
 main {
-  max-width: 800px ;
-  margin: auto ;
+  max-width: 800px;
+  margin: auto;
 }
 
 h1 {
   color: blueviolet;
 }
-h2 { color:  rebeccapurple ; }
-h1, h2 { text-align: center ; }
-h3 { color: steelblue ; }
-h2, h3 { line-height:1.2 ; }
-h4 { color: thistle ; }
-h5, h6 { color: cornsilk ; }
-a { color: mediumaquamarine ; }
-a:visited{ color: mediumslateblue ; }
+h2 { color:  rebeccapurple; }
+h1, h2 { text-align: center; }
+h3 { color: steelblue; }
+h2, h3 { line-height:1.2; }
+h4 { color: thistle; }
+h5, h6 { color: cornsilk; }
+a { color: mediumaquamarine; }
+a:visited{ color: mediumslateblue; }
 
 footer {
-  text-align: center ;
-  clear: both ;
+  text-align: center;
+  clear: both;
 }
-
 /* For TAGLIST.HTML */
 .taglist {
-  text-align: center ;
-  clear: both ;
+  text-align: center;
+  clear: both;
 }
 
 /* For NEXTPREV.HTML */
@@ -48,13 +47,13 @@ footer {
   /* The container for both the previous and next articles. */
 }
 #prevart {
-  float: left ;
-  text-align: left ;
+  float: left;
+  text-align: left;
 }
 #nextart {
-  float: right ;
-  text-align: right ;
+  float: right;
+  text-align: right;
 }
 #nextart,#prevart {
-  max-width: 33% ;
+  max-width: 33%;
 }
