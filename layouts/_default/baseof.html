@@ -17,7 +17,9 @@
 <body>
 {{ if .Site.Menus.main }}{{ partial "nav.html" . }}{{ end -}}
 <main>
-<header><h1 id="tag_{{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
+<header><h1 id="tag - {{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
+{{ with .Params.description }}<header><h3 id="tag - {{ . }}">{{ . | markdownify }}</h3></header>{{ end -}}
+{{ partial "toggle-night.html" . }}
 <hr>
 {{- partial "toc.html" . -}}
 <article>

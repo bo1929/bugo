@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
-  background: #1b1b1b;
-  color: navajowhite;
+  background: #fcf3f2;
+  color: #2e0a06;
   min-height: 100vh;
   max-width: 850px;
   padding: 0 16px;
@@ -20,9 +20,7 @@ main {
   margin: auto;
 }
 
-h1 {
-  color: blueviolet;
-}
+h1 { color: blueviolet; }
 h2 { color:  rebeccapurple; }
 h1, h2 { text-align: center; }
 h3 { color: steelblue; }

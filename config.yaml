@@ -1,0 +1,18 @@
+baseURL: 'https://asapci.xyz/'
+languageCode: 'en-us'
+title: 'Ali Osman Berk Şapcı'
+theme: 'bugo'
+params:
+  subtitle: 'Personal website for news, notes, and maybe bl*g posts.'
+  contact:
+      email: 'asapci@ucsd.edu'
+  relatedtext: 'Related'
+  favicon: 'favicon.ico'
+  datesinlist: true
+  authorsinlist: true
+  nextprev: true
+  taglist: true
+  showrss: true
+markup:
+  tableOfContents:
+    ordered: false
