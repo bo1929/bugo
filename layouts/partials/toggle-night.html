@@ -109,41 +109,36 @@
   }
   
   .js-toggle--focus .js-toggle-thumb {
-    box-shadow: 0px 0px 2px 3px rgb(155, 267, 296);
+    box-shadow: 0px 0px 2px 3px rgb(180, 180, 180);
   }
   
   .js-toggle:active .js-toggle-thumb {
-    box-shadow: 0px 0px 5px 5px rgb(155, 267, 296);
+    box-shadow: 0px 0px 5px 5px rgb(180, 180, 180);
   }
 
   body.dark-mode, 
   body.dark-mode body * {
-    background: #1b1b1b;
-    color: navajowhite;
+  background: #1b1b1b;
+  color: navajowhite;
   }
 
-  body.dark-mode h1 { color: blueviolet; }
-  body.dark-mode h2 { color:  rebeccapurple; }
-  body.dark-mode h3 { color: steelblue; }
-  body.dark-mode h4 { color: thistle; }
-  body.dark-mode h5, h6 { color: cornsilk; }
-  body.dark-mode a { color: mediumaquamarine; }
-  body.dark-mode a:visited { color: mediumslateblue; }
-
+  body.dark-mode h1 { color: darksalmon; }
+  body.dark-mode h2 { color: #C5908E; }
+  body.dark-mode h3 { color: #C2E5D3; }
+  body.dark-mode h4 { color: #D5D6EA; }
+  body.dark-mode h5, body.dark-mode h6 { color: #EBDDE2; }
+  body.dark-mode a { color: thistle; }
+  body.dark-mode a:visited { color: #F7CAC9; }
 </style>
 
 <script>
     var body = document.body;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
-
-	//Click on dark mode icon. Add dark mode classes and wrappers. Store user preference through sessions
 	switcher.addEventListener("click", function() {
         this.classList.toggle('js-toggle--checked');
         this.classList.add('js-toggle--focus');
-		//If dark mode is selected
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
-			//Save user preference in storage
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
@@ -152,13 +147,9 @@
 			}, 100);
 		}
 	})
-
-	//Check Storage. Keep user preference on page reload
 	if (localStorage.getItem('darkMode')) {
-		//body.classList.add('dark-mode');
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
 	}
-
 </script>
  <!-- by Atanas Yonkov, MIT Licence --> 
