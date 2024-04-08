@@ -22,11 +22,11 @@ body {
 
 h1 { color: #7E191B; }
 h2 { color: #7E354D; }
-h3 { color: #045F5F; }
+h3 { color: #123456; }
 h4 { color: #2F6357; }
 h5, h6 { color: #3C565B; }
-a { color: #622F22; }
-a:visited{ color: #43302E; }
+a { color: #045D5D; }
+a:visited{ color: #026C3D; }
 h1, h2 { text-align: center; }
 h2, h3 { line-height:1.2; }
 
