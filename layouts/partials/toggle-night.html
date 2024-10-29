@@ -1,3 +1,9 @@
+{{ $syntax_light_css := resources.Get "syntax_light.css" | minify }}
+{{ $syntax_dark_css := resources.Get "syntax_dark.css" | minify }}
+
+<link rel="preload stylesheet" as="style" href="{{ $syntax_light_css.Permalink }}" />
+<link rel="preload stylesheet" as="style" href="{{ $syntax_dark_css.Permalink }}" />
+
 <div class="js-toggle-wrapper">
     <div class="js-toggle">
         <div class="js-toggle-track">
@@ -132,24 +138,36 @@
 </style>
 
 <script>
-    var body = document.body;
+	function getStyleSheet(file_name) {
+		for (var i = 0; i < document.styleSheets.length; i++) {
+			var sheet = document.styleSheets[i];
+			if (sheet.href.includes(file_name)) {
+				return sheet;
+			}
+		}
+	}
+  sheet_dark = getStyleSheet("syntax_dark");
+  sheet_light = getStyleSheet("syntax_light");
+  var body = document.body;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 	switcher.addEventListener("click", function() {
-        this.classList.toggle('js-toggle--checked');
-        this.classList.add('js-toggle--focus');
+		this.classList.toggle('js-toggle--checked');
+		this.classList.add('js-toggle--focus');
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
 			localStorage.setItem('darkMode', 'true');
+      sheet_dark.disabled = false;
+      sheet_light.disabled = true;
 		} else {
 			body.classList.remove('dark-mode');
-			setTimeout(function() {
-				localStorage.removeItem('darkMode');
-			}, 100);
+			setTimeout(function() {localStorage.removeItem('darkMode');}, 100);
+      sheet_dark.disabled = true;
+      sheet_light.disabled = false;
 		}
 	})
 	if (localStorage.getItem('darkMode')) {
-        switcher.classList.add('js-toggle--checked');
-        body.classList.add('dark-mode');
+      switcher.classList.add('js-toggle--checked');
+      body.classList.add('dark-mode');
 	}
 </script>
- <!-- by Atanas Yonkov, MIT Licence --> 
+ <!-- by Atanas Yonkov and edited by Ali Sapci, MIT Licence --> 
