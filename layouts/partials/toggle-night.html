@@ -167,8 +167,6 @@
   if (localStorage.getItem('darkMode')) {
     switcher.classList.add('js-toggle--checked');
     body.classList.add('dark-mode');
-  }
-  if (this.classList.contains('js-toggle--checked')) {
     sheet_dark.disabled = false;
     sheet_light.disabled = true;
   } else {
