@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language }}">
+
 <head>
 	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
 	<link rel="canonical" href="{{ .Site.BaseURL }}">
@@ -14,14 +15,18 @@
 	<meta name="robots" content="index, follow">
 	<meta charset="utf-8">
 </head>
+{{ partial "toggle-night.html" . }}
+
 <body>
 {{ if .Site.Menus.main }}{{ partial "nav.html" . }}{{ end -}}
+
 <main>
 <header><h1 id="tag - {{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
+
 {{ with .Params.description }}<header><h3 id="tag - {{ . }}">{{ . | markdownify }}</h3></header>{{ end -}}
-{{ partial "toggle-night.html" . }}
 <hr>
 {{- partial "toc.html" . -}}
+
 <article>
 {{ block "main" . -}}
 {{ .Content }}
@@ -29,8 +34,10 @@
 {{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}
 {{ if .Param "taglist" }}{{ partial "taglist.html" . }}{{ end -}}
 </article>
+
 <hr>
 </main>
+
 {{ block "footer" . }}
 <footer>
 	<a href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a>
@@ -39,4 +46,5 @@
 {{ end }}
 {{ partial "mathjax.html" . }}
 </body>
+
 </html>

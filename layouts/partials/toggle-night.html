@@ -20,11 +20,13 @@
 
 <style>
   .js-toggle-wrapper {
-      display: table;
-      margin: 0 auto;
+    display: table;
+    margin: 0 auto;
+    position:relative;
+    top:1em
   }
 
-.js-toggle {
+  .js-toggle {
     touch-action: pan-x;
     display: inline-block;
     position: relative;
@@ -55,7 +57,7 @@
     padding: 0;
     border-radius: 30px;
     background-color: hsl(222, 14%, 7%);
-    transition: all 0.2s ease;
+    transition: all 0.0s ease;
   }
   
   .js-toggle-track-check {
@@ -69,12 +71,12 @@
     margin-bottom: auto;
     line-height: 0;
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.0s ease;
   }
   
   .js-toggle--checked .js-toggle-track-check {
     opacity: 1;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.0s ease;
   }
   
   .js-toggle-track-x {
@@ -88,7 +90,7 @@
     margin-bottom: auto;
     line-height: 0;
     opacity: 1;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.0s ease;
   }
   
   .js-toggle--checked .js-toggle-track-x {
@@ -104,7 +106,7 @@
     border-radius: 50%;
     background-color: #fafafa;
     box-sizing: border-box;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: all 0.0s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     transform: translateX(0);
   }
   
@@ -123,8 +125,8 @@
 
   body.dark-mode, 
   body.dark-mode body * {
-  background: #1b1b1b;
-  color: navajowhite;
+    background: #1b1b1b;
+    color: navajowhite;
   }
 
   body.dark-mode h1 { color: darksalmon; }
@@ -145,8 +147,6 @@
       }
     }
   }
-  sheet_dark = getStyleSheet("syntax_dark");
-  sheet_light = getStyleSheet("syntax_light");
   var body = document.body;
   var switcher = document.getElementsByClassName('js-toggle')[0];
   switcher.addEventListener("click", function() {
@@ -155,23 +155,24 @@
     if (this.classList.contains('js-toggle--checked')) {
       body.classList.add('dark-mode');
       localStorage.setItem('darkMode', 'true');
-      sheet_dark.disabled = false;
-      sheet_light.disabled = true;
+      getStyleSheet("syntax_dark").disabled = false;
+      getStyleSheet("syntax_light").disabled = true;
     } else {
       body.classList.remove('dark-mode');
       setTimeout(function() {localStorage.removeItem('darkMode');}, 100);
-      sheet_dark.disabled = true;
-      sheet_light.disabled = false;
+      getStyleSheet("syntax_dark").disabled = true;
+      getStyleSheet("syntax_light").disabled = false;
     }
   })
   if (localStorage.getItem('darkMode')) {
     switcher.classList.add('js-toggle--checked');
     body.classList.add('dark-mode');
-    sheet_dark.disabled = false;
-    sheet_light.disabled = true;
+    getStyleSheet("syntax_dark").disabled = false;
+    getStyleSheet("syntax_light").disabled = true;
   } else {
-    sheet_dark.disabled = true;
-    sheet_light.disabled = false;
+    getStyleSheet("syntax_dark").disabled = true;
+    getStyleSheet("syntax_light").disabled = false;
   }
 </script>
+
  <!-- by Atanas Yonkov and edited by Ali Sapci, MIT Licence --> 
