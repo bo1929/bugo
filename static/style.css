@@ -13,7 +13,7 @@ img {
 body {
   font-family: sans-serif;
   min-height: 100vh;
-  max-width: 850px;
+  max-width: 100%;
   padding: 0 16px;
   margin: auto;
   color: #2E1A47;
@@ -48,8 +48,15 @@ footer {
 }
 #nextart {
   float: right;
-  text-align: right;
-}
+  text-align: right; }
 #nextart,#prevart {
   max-width: 33%;
+}
+
+li {
+  margin-bottom: 5px; /* Adds space between items */
+}
+li > ul, li > ol {
+  margin-top: 0;
+  margin-bottom: 0;
 }
