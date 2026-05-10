@@ -25,10 +25,9 @@ h2 { color: #7E354D; }
 h3 { color: #123456; }
 h4 { color: #2F6357; }
 h5, h6 { color: #3C565B; }
+h1, h2 { text-align: center; }
 a { color: #045D5D; }
 a:visited{ color: #026C3D; }
-h1, h2 { text-align: center; }
-h2, h3 { line-height:1.2; }
 
 footer {
   text-align: center;
@@ -52,4 +51,22 @@ footer {
 }
 #nextart,#prevart {
   max-width: 33%;
+}
+
+/* Reduce spacing for H1 through H4 */
+h1, h2 {
+  margin-top: 1.5rem;    /* Space before the header */
+  margin-bottom: 0.75rem; /* Space after the header */
+}
+h2 {
+  margin-top: 1rem;    /* Space before the header */
+  margin-bottom: 0.5rem; /* Space after the header */
+}
+h3, h4 {
+  margin-top: 0.5rem;    /* Space before the header */
+  margin-bottom: 0.25rem; /* Space after the header */
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem !important; /* Adjust this value (e.g., 0px, 4px) */
+  line-height: 1.2 !important;     /* Reduces the vertical "box" around the text */
 }

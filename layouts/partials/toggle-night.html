@@ -123,8 +123,7 @@
     box-shadow: 0px 0px 5px 5px rgb(180, 180, 180);
   }
 
-  body.dark-mode, 
-  body.dark-mode body * {
+  body.dark-mode {
     background: #1b1b1b;
     color: navajowhite;
   }
@@ -142,10 +141,11 @@
   function getStyleSheet(file_name) {
     for (var i = 0; i < document.styleSheets.length; i++) {
       var sheet = document.styleSheets[i];
-      if (sheet.href.includes(file_name)) {
+      if (sheet.href && sheet.href.includes(file_name)) {
         return sheet;
       }
     }
+    return null;
   }
   var body = document.body;
   var switcher = document.getElementsByClassName('js-toggle')[0];
@@ -155,23 +155,31 @@
     if (this.classList.contains('js-toggle--checked')) {
       body.classList.add('dark-mode');
       localStorage.setItem('darkMode', 'true');
-      getStyleSheet("syntax_dark").disabled = false;
-      getStyleSheet("syntax_light").disabled = true;
+      var sd = getStyleSheet("syntax_dark");
+      var sl = getStyleSheet("syntax_light");
+      if (sd) sd.disabled = false;
+      if (sl) sl.disabled = true;
     } else {
       body.classList.remove('dark-mode');
       setTimeout(function() {localStorage.removeItem('darkMode');}, 100);
-      getStyleSheet("syntax_dark").disabled = true;
-      getStyleSheet("syntax_light").disabled = false;
+      var sd = getStyleSheet("syntax_dark");
+      var sl = getStyleSheet("syntax_light");
+      if (sd) sd.disabled = true;
+      if (sl) sl.disabled = false;
     }
   })
   if (localStorage.getItem('darkMode')) {
     switcher.classList.add('js-toggle--checked');
     body.classList.add('dark-mode');
-    getStyleSheet("syntax_dark").disabled = false;
-    getStyleSheet("syntax_light").disabled = true;
+    var sd = getStyleSheet("syntax_dark");
+    var sl = getStyleSheet("syntax_light");
+    if (sd) sd.disabled = false;
+    if (sl) sl.disabled = true;
   } else {
-    getStyleSheet("syntax_dark").disabled = true;
-    getStyleSheet("syntax_light").disabled = false;
+    var sd = getStyleSheet("syntax_dark");
+    var sl = getStyleSheet("syntax_light");
+    if (sd) sd.disabled = true;
+    if (sl) sl.disabled = false;
   }
 </script>
 
