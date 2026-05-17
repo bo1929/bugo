@@ -3,7 +3,7 @@
 {{- end }}
 {{ define "main" -}}
 {{ .Content }}
-<ul>
+<ul class="feed-list">
 {{ range .RegularPagesRecursive.ByDate.Reverse }}
 {{- if or 
   (eq .Section "news")
@@ -11,9 +11,11 @@
   (eq .Section "notes") 
 -}}
 {{- if not .IsNode -}}
-<li>
-	{{ if .Param "datesinlist" }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time> &ndash; {{ end -}}
-  <a href="{{ .RelPermalink }}">{{ .Section }} / {{ .Title | markdownify }}</a>
+<li class="feed-item">
+	{{- if .Param "datesinlist" -}}
+	<time class="feed-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time>
+	{{- end -}}
+	<a class="feed-link" href="{{ .RelPermalink }}">{{ .Section }} / {{ .Title | markdownify }}</a>
 </li>
 {{- end -}}
 {{- end -}}

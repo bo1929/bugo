@@ -8,7 +8,7 @@
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">
 	{{ end -}}
-	<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
+	<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Summary }}{{ end }}{{ end }}">
 	{{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">
 	{{ end -}}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,26 +17,25 @@
 </head>
 
 {{ partial "toggle-night.html" . }}
-<br>
-<body>
+<body{{ if .IsHome }} class="home"{{ end }}>
+<div class="site-wrap">
+<main>
+<header class="site-header">
+	<h1 id="tag - {{ .Title }}">{{ block "title" . }}{{ end }}</h1>
+	{{ with .Params.description }}<p class="site-subtitle">{{ . | markdownify }}</p>{{ else }}{{ with .Params.subtitle }}<p class="site-subtitle">{{ . | markdownify }}</p>{{ end }}{{ end }}
+</header>
+
 {{ if .Site.Menus.main }}{{ partial "nav.html" . }}{{ end -}}
 
-<main>
-<header><h1 id="tag - {{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
-
-{{ with .Params.description }}<header><h3 id="tag - {{ . }}">{{ . | markdownify }}</h3></header>{{ end -}}
-<hr>
 {{- partial "toc.html" . -}}
 
-<article>
+<article class="site-content{{ if .Param "tightl" }} tightl{{ end }}">
 {{ block "main" . -}}
 {{ .Content }}
 {{ end }}
 {{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}
 {{ if .Param "taglist" }}{{ partial "taglist.html" . }}{{ end -}}
 </article>
-
-<hr>
 </main>
 
 {{ block "footer" . }}
@@ -45,6 +44,7 @@
 	{{- if .Param "showrss" }}<br><br><a href="/index.xml"><img src="/rss.svg" style="max-height:1.5em" alt="RSS Feed" title="Subscribe via RSS for updates."></a>{{ end }}
 </footer>
 {{ end }}
+</div>
 {{ partial "mathjax.html" . }}
 </body>
 
