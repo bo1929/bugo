@@ -2,7 +2,8 @@
 :root {
   --font-body: 1rem;
   --font-lead: 1.05rem;
-  --font-section: 1.125rem;
+  --font-section-h2: 1.1875rem;
+  --font-section-h3: 1.0625rem;
   --font-compact: 1rem;
   --font-detail: 1.0125rem;
   --font-code: 0.875rem;
@@ -207,7 +208,7 @@ img {
 
 /* Content headings (publications, presentations, posts, ...) */
 .site-content h2 {
-  font-size: var(--font-section);
+  font-size: var(--font-section-h2);
   font-weight: 600;
   line-height: 1.2;
   margin: 1.25rem 0 0.5rem;
@@ -215,7 +216,7 @@ img {
 }
 
 .site-content h3 {
-  font-size: var(--font-section);
+  font-size: var(--font-section-h3);
   font-weight: 600;
   line-height: 1.2;
   margin: 1rem 0 0.35rem;
@@ -368,4 +369,5 @@ body.dark-mode .site-content .highlight {
 
 .js-toggle-wrapper {
   margin-top: 0.5rem;
+  margin-bottom: 0.65rem;
 }
