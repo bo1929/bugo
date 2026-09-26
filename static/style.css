@@ -142,30 +142,45 @@ main {
   color: var(--text-muted);
 }
 
-/* Publications: body size, tight line spacing only */
+/* tightl: flat lists (publications, research bullets) */
 .site-content.tightl {
   font-size: var(--font-body);
   line-height: var(--line-tight);
 }
 
-.site-content.tightl ul > li {
-  margin-bottom: 0.2rem;
+.site-content.tightl > ul > li,
+.site-content.tightl h2 + ul > li {
+  margin-bottom: 0.28rem;
 }
 
-.site-content.tightl ul > li:last-child {
+.site-content.tightl > ul > li:last-child,
+.site-content.tightl h2 + ul > li:last-child {
   margin-bottom: 0;
 }
 
-.site-content.tightl ul > li > p {
-  margin: 0 0 0.2rem;
+.site-content.tightl > ul > li > p,
+.site-content.tightl h2 + ul > li > p {
+  margin: 0 0 0.28rem;
 }
 
-.site-content.tightl ul > li:last-child > p {
+.site-content.tightl > ul > li:last-child > p,
+.site-content.tightl h2 + ul > li:last-child > p {
   margin-bottom: 0;
 }
 
 .site-content.tightl h2 + ul {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+/* tightl + compact-list: top-level outline items only (nested subitems unchanged) */
+.site-content.tightl .outline-list > ul > li,
+.site-content.tightl .outline-list > ol > li {
+  margin-bottom: 0.4rem;
+}
+
+.site-content.tightl .outline-list > ul,
+.site-content.tightl .outline-list > ol {
+  margin-bottom: 0.45rem;
 }
 
 /* Home news/posts feed */
@@ -368,6 +383,5 @@ body.dark-mode .site-content .highlight {
 }
 
 .js-toggle-wrapper {
-  margin-top: 0.5rem;
-  margin-bottom: 0.65rem;
+  margin: 1.15rem auto 1.15rem;
 }
