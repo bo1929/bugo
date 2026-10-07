@@ -753,6 +753,7 @@ body.dark-mode .site-content .highlight {
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 0.35rem;
 }
