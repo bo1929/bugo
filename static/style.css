@@ -27,6 +27,10 @@
   --link-hover: #012929;
   --bg: #fcf3f2;
   --border: rgba(46, 26, 71, 0.22);
+  /* Dates sit near the top of the text range rather than at --text-muted:
+     muted purple washes out against the warm background. Overridden for dark
+     mode in layouts/partials/toggle-night.html. */
+  --date: #2b1a3d;
   --width-site: min(calc(90ch + 0.5rem), 100% - 7.5rem);
 
   /* Mode switcher. The track carries the contrast and the thumb carries the
@@ -147,7 +151,7 @@ main {
 
 .site-content time {
   font-size: var(--font-body);
-  color: var(--text-muted);
+  color: var(--date);
 }
 
 /* tightl: flat lists (publications, research bullets) */
@@ -212,7 +216,7 @@ main {
 
 .site-content ul.feed-list .feed-date {
   font-size: inherit;
-  color: var(--text-muted);
+  color: var(--date);
   font-variant-numeric: tabular-nums;
   text-align: right;
   white-space: nowrap;
@@ -253,7 +257,7 @@ main {
 
 .site-content .feed-entry .feed-date {
   font-size: inherit;
-  color: var(--text-muted);
+  color: var(--date);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -691,7 +695,7 @@ body.dark-mode .site-content .highlight {
 }
 
 .news-date {
-  color: var(--text-muted);
+  color: var(--date);
   font-size: var(--font-compact);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
