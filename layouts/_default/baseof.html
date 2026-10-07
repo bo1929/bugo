@@ -43,6 +43,7 @@
 </footer>
 {{ end }}
 </div>
+{{ if eq (.Param "feedScope") "all" }}{{ partial "tag-filter-script.html" . }}{{ end }}
 {{ partial "mathjax.html" . }}
 </body>
 

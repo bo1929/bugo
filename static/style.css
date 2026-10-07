@@ -395,7 +395,7 @@ figcaption h4 {
   margin-top: 0.35rem;
 }
 
-/* News hub — one document of dated announcements under /news/ */
+/* News hub: one document of dated announcements under /news/ */
 .site-content.news-hub h2 {
   margin-top: 2rem;
   padding-top: 1.1rem;
@@ -570,6 +570,17 @@ footer {
   overflow-x: auto;
 }
 
+/* Long command lines should scroll, not force the page to reflow. */
+.site-content .highlight pre,
+.site-content .highlight code {
+  tab-size: 2;
+}
+
+.site-content p > code,
+.site-content li > code {
+  overflow-wrap: break-word;
+}
+
 .site-content .highlight .chroma,
 .site-content .highlight code {
   font-size: inherit;
@@ -582,6 +593,97 @@ body.dark-mode .site-content :not(pre) > code {
 
 body.dark-mode .site-content .highlight {
   border-color: rgba(255, 222, 173, 0.12);
+}
+
+/* Tag chips on archive entries */
+.site-content .feed-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
+}
+
+.site-content .feed-tag {
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.site-content .feed-tag:hover {
+  border-color: var(--link);
+  color: var(--link);
+  text-decoration: none;
+}
+
+/* Tag filter on the archive page */
+.tag-filter {
+  margin: 0.5rem 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tag-filter-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.tag-filter-label {
+  font-size: var(--font-compact);
+  line-height: var(--line-compact);
+  color: var(--text-muted);
+}
+
+.tag-filter-count {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.tag-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-chip {
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.tag-chip:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.tag-chip.is-active {
+  border-color: var(--link);
+  background: var(--link);
+  color: var(--bg);
+}
+
+.tag-chip-n {
+  opacity: 0.7;
+}
+
+/* Only hide once the script has run, so no-JS visitors see every entry. */
+.feed-entry[hidden] {
+  display: none;
 }
 
 .js-toggle-wrapper {

@@ -1,7 +1,28 @@
 {{- /* The all-items archive rendered at /posts/, driven by `feedScope: all`.
-       Every section that holds content items is listed here. */ -}}
+       Tags are collected across every entry and offered as a filter. The
+       buttons are inert without JavaScript: every entry stays visible and the
+       tag links still work, so nothing depends on the script. */ -}}
 {{- $sections := slice "news" "notes" "posts" -}}
 {{- $pages := where .Site.RegularPages "Section" "in" $sections -}}
-{{- range $pages.ByDate.Reverse -}}
+{{- $pages = $pages.ByDate.Reverse -}}
+{{- $tagged := where $pages "Params.tags" "!=" nil -}}
+{{- if $tagged -}}
+<div class="tag-filter" data-tag-filter>
+  <div class="tag-filter-head">
+    <span class="tag-filter-label">Filter by tag</span>
+    <span class="tag-filter-count" data-filter-count aria-live="polite"></span>
+  </div>
+  <ul class="tag-filter-list">
+    <li><button type="button" class="tag-chip is-active" data-tag="">All <span class="tag-chip-n">{{ len $tagged }}</span></button></li>
+    {{- range .Site.Taxonomies.tags.ByCount }}
+    {{- $slug := path.Base (strings.TrimSuffix "/" .Page.RelPermalink) }}
+    <li><button type="button" class="tag-chip" data-tag="{{ $slug }}">{{ $slug }} <span class="tag-chip-n">{{ .Count }}</span></button></li>
+    {{- end }}
+  </ul>
+</div>
+{{- end -}}
+<div class="feed-entries" data-feed-entries>
+{{- range $pages -}}
   {{- partial "feed-entry.html" (dict "page" .) -}}
 {{- end -}}
+</div>

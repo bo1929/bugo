@@ -5,13 +5,10 @@
 {{ .Content }}
 {{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
-{{- else -}}
+{{- else if not .IsHome -}}
+{{- /* Home is the bio only: news lives on /news/ and the rest on /posts/,
+       so there is no item list here. Section landing pages keep theirs. */ -}}
 {{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
-{{- if .IsHome -}}
-  {{- /* Home shows the bio plus non-news items only; news has its own page. */ -}}
-  {{- $pages = where $pages "Section" "ne" "news" -}}
-  {{- $pages = where $pages "IsNode" false -}}
-{{- end -}}
 <ul class="feed-list">
 {{ range $pages }}
 {{- if or 

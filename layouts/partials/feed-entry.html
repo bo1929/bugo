@@ -13,7 +13,20 @@
 {{- with $p.RawContent -}}
   {{- $more = printf "<p class=\"feed-more\"><a href=\"%s\">Read more&nbsp;&rsaquo;</a></p>" $p.RelPermalink -}}
 {{- end -}}
-<article class="feed-entry" id="{{ $slug }}">
+{{- $tags := "" -}}
+{{- $tagAttr := "" -}}
+{{- with $p.Params.tags -}}
+  {{- $chips := slice -}}
+  {{- $slugs := slice -}}
+  {{- range . -}}
+    {{- $slug := . | urlize | lower -}}
+    {{- $chips = $chips | append (printf "<a class=\"feed-tag\" href=\"/tags/%s/\">%s</a>" $slug .) -}}
+    {{- $slugs = $slugs | append $slug -}}
+  {{- end -}}
+  {{- $tags = printf "<p class=\"feed-tags\">%s</p>" (delimit $chips " ") -}}
+  {{- $tagAttr = printf " data-tags=\"%s\"" (delimit $slugs " ") -}}
+{{- end -}}
+<article class="feed-entry" id="{{ $slug }}"{{ $tagAttr | safeHTMLAttr }}>
 	<header class="feed-head">
 		<div class="feed-meta">
 			<time class="feed-date" datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "2006 Jan 02" }}</time>
@@ -24,6 +37,6 @@
 		</h2>
 	</header>
 	<div class="feed-body">
-		{{ printf "%s%s" $lead $more | safeHTML }}
+		{{ printf "%s%s%s" $lead $tags $more | safeHTML }}
 	</div>
 </article>
