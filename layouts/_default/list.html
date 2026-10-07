@@ -5,25 +5,34 @@
 {{ .Content }}
 {{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
+{{- else if .Param "newsCompact" -}}
+{{- /* The news hub is a compact list of one-line announcements, followed by
+       its longer items, which live on their own dated pages. */ -}}
+{{- with .RegularPagesRecursive.ByDate.Reverse }}
+<h2 class="list-heading">More</h2>
+<ul class="post-list">
+{{- range . }}
+  <li>
+    <a class="post-list-link" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+    <time class="post-list-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time>
+    {{- with .Params.tags }}<span class="post-list-tags">{{ delimit . " &middot; " | safeHTML }}</span>{{ end }}
+  </li>
+{{- end }}
+</ul>
+{{- end }}
 {{- else if not .IsHome -}}
-{{- /* Home is the bio only: news lives on /news/ and the rest on /posts/,
-       so there is no item list here. Section landing pages keep theirs. */ -}}
-{{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
+{{- /* Taxonomy pages and any section hub without its own compact list. Only
+       leaf pages are listed; the section name is not used because content
+       items with a custom permalink report an empty .Section. */ -}}
 <ul class="feed-list">
-{{ range $pages }}
-{{- if or 
-  (eq .Section "news")
-  (eq .Section "posts") 
-  (eq .Section "notes") 
--}}
+{{- range .RegularPagesRecursive.ByDate.Reverse }}
 {{- if not .IsNode -}}
 <li class="feed-item">
 	{{- if .Param "datesinlist" -}}
 	<time class="feed-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time>
 	{{- end -}}
-	<a class="feed-link" href="{{ .RelPermalink }}">{{ .Section }} / {{ .Title | markdownify }}</a>
+	<a class="feed-link" href="{{ .RelPermalink }}">{{ with .Param "itemType" }}{{ . }} / {{ else }}{{ .Section }} / {{ end }}{{ .Title | markdownify }}</a>
 </li>
-{{- end -}}
 {{- end -}}
 {{- end }}
 </ul>

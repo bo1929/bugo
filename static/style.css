@@ -686,6 +686,76 @@ body.dark-mode .site-content .highlight {
   display: none;
 }
 
+/* Compact section hubs: one line per short announcement */
+.news-hub > ul {
+  margin: 0.25rem 0 1.75rem;
+  padding-left: 1.1rem;
+  font-size: var(--font-detail);
+}
+
+.news-hub > ul > li {
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
+}
+
+.news-hub > ul > li > strong:first-child {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.news-tag,
+.feed-type,
+.tag-chip,
+.feed-tag {
+  font-variant-numeric: tabular-nums;
+}
+
+.news-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0.02rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  color: var(--accent-talk);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Longer items that live on their own page, listed under a section hub */
+.list-heading {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-list {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-size: var(--font-detail);
+}
+
+.post-list > li {
+  margin-bottom: 0.4rem;
+  line-height: 1.45;
+}
+
+.post-list-date {
+  margin-left: 0.4rem;
+  color: var(--text-muted);
+  font-size: var(--font-compact);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.post-list-tags {
+  margin-left: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
 .js-toggle-wrapper {
   margin: 1.15rem auto 1.15rem;
 }
