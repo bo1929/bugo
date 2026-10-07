@@ -1,0 +1,5 @@
+# Hugo build lock (recreated whenever Hugo runs in this directory)
+.hugo_build.lock
+
+# macOS
+.DS_Store
