@@ -3,8 +3,17 @@
 {{- end }}
 {{ define "main" -}}
 {{ .Content }}
+{{- if .Param "feedScope" -}}
+{{ partial "feed.html" . }}
+{{- else -}}
+{{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
+{{- if .IsHome -}}
+  {{- /* Home shows the bio plus non-news items only; news has its own page. */ -}}
+  {{- $pages = where $pages "Section" "ne" "news" -}}
+  {{- $pages = where $pages "IsNode" false -}}
+{{- end -}}
 <ul class="feed-list">
-{{ range .RegularPagesRecursive.ByDate.Reverse }}
+{{ range $pages }}
 {{- if or 
   (eq .Section "news")
   (eq .Section "posts") 
@@ -21,4 +30,5 @@
 {{- end -}}
 {{- end }}
 </ul>
+{{- end }}
 {{- end }}

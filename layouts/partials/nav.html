@@ -5,7 +5,7 @@
       {{- $file = .TranslationBaseName -}}
     {{- end -}}
     {{- $sec := .Page.Section -}}
-    {{- range .Site.Menus.main.ByWeight -}}
+    {{- range where .Site.Menus.main.ByWeight "Name" "!=" "Resources" -}}
       {{- $base := path.Base .URL -}}
       {{- $active := or (eq $sec $base) (eq $file $base) (and (eq $sec "") (eq $file "_index") (eq $base "/")) -}}
       <li class="site-nav-item">

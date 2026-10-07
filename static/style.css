@@ -214,6 +214,115 @@ main {
   text-decoration: underline;
 }
 
+/* Scrollable feed: one article per item on /news/ and /posts/ */
+.site-content .feed-entry {
+  margin: 0 0 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.site-content .feed-entry:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.site-content .feed-entry:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.site-content .feed-head {
+  margin: 0 0 0.45rem;
+}
+
+.site-content .feed-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--font-compact);
+  line-height: var(--line-compact);
+}
+
+.site-content .feed-entry .feed-date {
+  font-size: inherit;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.site-content .feed-type {
+  padding: 0.02rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  color: var(--accent-talk);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.site-content .feed-entry .feed-title {
+  margin: 0.1rem 0 0;
+  font-size: var(--font-section-h2);
+  line-height: var(--line-tight);
+}
+
+.site-content .feed-entry .feed-title a {
+  text-decoration: underline;
+}
+
+.site-content .feed-entry .feed-body {
+  margin-top: 0.35rem;
+  font-size: var(--font-detail);
+}
+
+.site-content .feed-entry .feed-body > :first-child {
+  margin-top: 0;
+}
+
+.site-content .feed-entry .feed-body > :last-child {
+  margin-bottom: 0;
+}
+
+.site-content .feed-entry .feed-body p {
+  margin: 0.5rem 0;
+}
+
+.site-content .feed-entry .feed-body blockquote {
+  margin: 0.6rem 0;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.site-content .feed-entry .feed-body figure {
+  margin: 0.85rem 0;
+}
+
+.site-content .feed-entry .feed-more {
+  margin-top: 0.55rem;
+  font-size: var(--font-compact);
+  line-height: var(--line-compact);
+}
+
+/* Inlined entries carry their own headings; keep them under the entry title */
+.site-content .feed-entry .feed-body h2 {
+  font-size: var(--font-section-h3);
+}
+
+.site-content .feed-entry .feed-body h3,
+.site-content .feed-entry .feed-body h4,
+.site-content .feed-entry .feed-body h5,
+.site-content .feed-entry .feed-body h6 {
+  font-size: var(--font-compact);
+}
+
+.site-content .feed-entry .taglist {
+  margin-top: 0.6rem;
+  font-size: var(--font-compact);
+}
+
 img {
   max-width: 90%;
   max-height: 400px;
