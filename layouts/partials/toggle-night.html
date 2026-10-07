@@ -54,8 +54,17 @@
     height: 24px;
     padding: 0;
     border-radius: 30px;
-    background-color: hsl(222, 14%, 7%);
-    transition: all 0.0s ease;
+    background-color: var(--toggle-track);
+    border: 1px solid var(--toggle-border);
+    box-sizing: border-box;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  /* The check/cross artwork is a fixed-colour PNG, so the filter variable
+     keeps it readable against whichever track colour is active, and the
+     shadow stops the yellow washing out on the light track. */
+  .js-toggle-track img {
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45)) var(--toggle-icon-filter);
   }
   
   .js-toggle-track-check {
@@ -102,9 +111,10 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background-color: #fafafa;
+    background-color: var(--toggle-thumb);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     box-sizing: border-box;
-    transition: all 0.0s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: transform 0.15s ease, background-color 0.15s ease;
     transform: translateX(0);
   }
   
@@ -136,6 +146,12 @@
     --link-hover: #F7CAC9;
     --bg: #1e1c1a;
     --border: rgba(255, 222, 173, 0.2);
+    /* Flip the pill: a light track on the dark page keeps it visible without
+       needing a heavy outline, and the dark thumb keeps the state readable. */
+    --toggle-track: #ddd2c4;
+    --toggle-thumb: #2b2723;
+    --toggle-border: rgba(232, 220, 200, 0.35);
+    --toggle-icon-filter: contrast(1.1) saturate(1.15);
     background: var(--bg);
     color: var(--text);
   }

@@ -1,0 +1,23 @@
+{{- /* Two or more figures laid out side by side.
+       Usage:
+         {{< figures-side-by-side
+              src1="/images/a.jpg" title1="First caption"
+              src2="/images/b.jpg" title2="Second caption" >}}
+       Up to four pairs; each rendered as a plain <figure> so the global figure
+       and figcaption styling still applies. */ -}}
+{{- $n := 0 -}}
+{{- range $i := (seq 1 4) -}}
+  {{- if $.Get (printf "src%d" $i) -}}{{- $n = $i -}}{{- end -}}
+{{- end -}}
+<div class="figures-row">
+{{- range $i := (seq 1 $n) }}
+  {{- $src := $.Get (printf "src%d" $i) -}}
+  {{- $title := $.Get (printf "title%d" $i) -}}
+  <figure>
+    <img src="{{ $src }}" alt="{{ $title }}" loading="lazy">
+    {{- with $title }}
+    <figcaption>{{ . }}</figcaption>
+    {{- end }}
+  </figure>
+{{- end }}
+</div>
