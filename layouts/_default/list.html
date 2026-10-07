@@ -2,28 +2,50 @@
 {{ .Title | markdownify }}
 {{- end }}
 {{ define "main" -}}
-{{ .Content }}
 {{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
-{{- else if .Param "newsCompact" -}}
-{{- /* The news hub is a compact list of one-line announcements, followed by
-       its longer items, which live on their own dated pages. */ -}}
-{{- with .RegularPagesRecursive.ByDate.Reverse }}
-<h2 class="list-heading">More</h2>
-<ul class="post-list">
-{{- range . }}
-  <li>
-    <a class="post-list-link" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-    <time class="post-list-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time>
-    {{- with .Params.tags }}<span class="post-list-tags">{{ delimit . " &middot; " | safeHTML }}</span>{{ end }}
+{{- else if .Param "newsList" -}}
+{{- /* One merged list: short entries from data/news.yaml and long ones from
+       content/news/*.md, interleaved newest first. Long entries get one extra
+       line underneath, a link to the page that holds them. */ -}}
+{{- $items := slice -}}
+{{- range .Site.Data.news -}}
+  {{- $items = $items | append (dict "date" (.date | time) "text" .text "tag" .tag) -}}
+{{- end -}}
+{{- range where .Site.RegularPages "Params.itemType" "news" -}}
+  {{- $items = $items | append (dict "date" .Date "page" .) -}}
+{{- end -}}
+<ul class="news-list">
+{{- range sort $items "date" "desc" }}
+  {{- with .page }}
+  <li class="news-item news-item--linked">
+    <time class="news-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+    <span class="news-body">
+      <span class="news-text">{{ .Title | markdownify }}</span>
+      {{- /* One extra line: the opening of the item, cut back to the last whole
+             word so it never breaks mid-word. */ -}}
+      {{ $lead := .Summary | plainify }}
+      {{ $lead = replace $lead "&ldquo;" "“" }}
+      {{ $lead = replace $lead "&rdquo;" "”" }}
+      {{ $cut := findRE `^.{1,120}\s` $lead }}
+      {{ $short := $lead }}
+      {{ if $cut }}{{ $short = printf "%s…" (trim (index $cut 0) " ") }}{{ end }}
+      <span class="news-more">{{ $short }}</span>
+      <a class="news-link" href="{{ .RelPermalink }}">Read<span class="sr-only"> {{ .Title | plainify }}</span> &rsaquo;</a>
+    </span>
   </li>
+  {{- else }}
+  <li class="news-item">
+    <time class="news-date" datetime="{{ .date.Format "2006-01-02" }}">{{ .date.Format "2 January 2006" }}</time>
+    <span class="news-body"><span class="news-text">{{ .text | markdownify }}</span></span>
+  </li>
+  {{- end }}
 {{- end }}
 </ul>
-{{- end }}
 {{- else if not .IsHome -}}
-{{- /* Taxonomy pages and any section hub without its own compact list. Only
-       leaf pages are listed; the section name is not used because content
-       items with a custom permalink report an empty .Section. */ -}}
+{{- /* Taxonomy pages and any section hub without its own list. Only leaf pages
+       are listed; the section name is not used because content items with a
+       custom permalink report an empty .Section. */ -}}
 <ul class="feed-list">
 {{- range .RegularPagesRecursive.ByDate.Reverse }}
 {{- if not .IsNode -}}

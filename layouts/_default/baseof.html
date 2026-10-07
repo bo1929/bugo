@@ -28,7 +28,7 @@
 
 {{- partial "toc.html" . -}}
 
-<article class="site-content{{ if .Param "tightl" }} tightl{{ end }}{{ if and (eq .Section "news") (not .IsHome) }} news-hub{{ end }}">
+<article class="site-content{{ if .Param "tightl" }} tightl{{ end }}{{ if .Param "newsList" }} news-hub{{ end }}">
 {{ block "main" . -}}
 {{ .Content }}
 {{ end }}
@@ -39,7 +39,14 @@
 
 {{ block "footer" . }}
 <footer>
-	<a href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a>
+	{{- with .Site.Params.footerlinks }}
+	<nav class="footer-nav" aria-label="Footer">
+		{{- range . }}
+		<a class="footer-link" href="{{ .url }}">{{ .name }}</a>
+		{{- end }}
+	</nav>
+	{{- end }}
+	<a class="footer-url" href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a>
 </footer>
 {{ end }}
 </div>
