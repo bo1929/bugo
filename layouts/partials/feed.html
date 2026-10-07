@@ -1,15 +1,7 @@
-{{- /* Scrollable feed of content items.
-       Scope is taken from the page's `feedScope` param:
-         "section" -> only this section (used by /news/)
-         "all"     -> every itemType across news, notes and posts (used by /posts/) */ -}}
-{{- $scope := .Param "feedScope" | default "section" -}}
-{{- if eq $scope "all" -}}
-  {{- $pages := where .Site.RegularPages "Section" "in" (slice "news" "notes" "posts") -}}
-  {{- range $pages.ByDate.Reverse -}}
-    {{- partial "feed-entry.html" (dict "page" . "scope" "all") -}}
-  {{- end -}}
-{{- else -}}
-  {{- range .RegularPagesRecursive.ByDate.Reverse -}}
-    {{- partial "feed-entry.html" (dict "page" . "scope" "section") -}}
-  {{- end -}}
+{{- /* The all-items archive rendered at /posts/, driven by `feedScope: all`.
+       Every section that holds content items is listed here. */ -}}
+{{- $sections := slice "news" "notes" "posts" -}}
+{{- $pages := where .Site.RegularPages "Section" "in" $sections -}}
+{{- range $pages.ByDate.Reverse -}}
+  {{- partial "feed-entry.html" (dict "page" .) -}}
 {{- end -}}

@@ -4,7 +4,6 @@
 <head>
 	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
 	<link rel="canonical" href="{{ .Site.BaseURL }}">
-	<link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">
 	{{ end -}}
@@ -29,7 +28,7 @@
 
 {{- partial "toc.html" . -}}
 
-<article class="site-content{{ if .Param "tightl" }} tightl{{ end }}">
+<article class="site-content{{ if .Param "tightl" }} tightl{{ end }}{{ if and (eq .Section "news") (not .IsHome) }} news-hub{{ end }}">
 {{ block "main" . -}}
 {{ .Content }}
 {{ end }}
@@ -41,7 +40,6 @@
 {{ block "footer" . }}
 <footer>
 	<a href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a>
-	{{- if .Param "showrss" }}<br><br><a href="/index.xml"><img src="/rss.svg" style="max-height:1.5em" alt="RSS Feed" title="Subscribe via RSS for updates."></a>{{ end }}
 </footer>
 {{ end }}
 </div>

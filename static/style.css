@@ -323,6 +323,63 @@ main {
   font-size: var(--font-compact);
 }
 
+/* Blockquotes carry every paper abstract on the site. The feed only styles the
+   ones inside an entry body, so give them a baseline everywhere; the rule above
+   then overrides the tighter spacing inside feed entries. */
+.site-content blockquote {
+  margin: 0.75rem 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+}
+
+.site-content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.site-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+figure {
+  margin: 1rem 0;
+}
+
+figcaption {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+figcaption h4 {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* News hub — one document of dated announcements under /news/ */
+.site-content.news-hub h2 {
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.site-content.news-hub > h2:first-child {
+  margin-top: 0.25rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.site-content.news-hub > p:has(> em:only-child) {
+  margin: -0.15rem 0 0.55rem;
+  font-size: var(--font-compact);
+  line-height: var(--line-compact);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 img {
   max-width: 90%;
   max-height: 400px;

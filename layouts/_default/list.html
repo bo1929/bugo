@@ -3,7 +3,7 @@
 {{- end }}
 {{ define "main" -}}
 {{ .Content }}
-{{- if .Param "feedScope" -}}
+{{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
 {{- else -}}
 {{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}

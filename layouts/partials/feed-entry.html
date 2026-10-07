@@ -1,36 +1,29 @@
+{{- /* One entry in the all-items archive at /posts/. Entries are always links:
+       items keep their own pages, and the news hub is a single dated document. */ -}}
 {{- $p := .page -}}
-{{- $scope := .scope -}}
-{{- $mode := $p.Param "feed" | default "link" -}}
 {{- $itemType := $p.Param "itemType" | default $p.Section -}}
 {{- $slug := $p.File.TranslationBaseName | default ($p.Title | urlize) -}}
-{{- $body := "" -}}
-{{- if eq $mode "inline" -}}
-  {{- $body = $p.Content -}}
+{{- $lead := "" -}}
+{{- with $p.Param "summary" -}}
+  {{- $lead = . | markdownify -}}
 {{- else -}}
-  {{- $lead := "" -}}
-  {{- with $p.Param "summary" -}}
-    {{- $lead = . | markdownify -}}
-  {{- else -}}
-    {{- $lead = $p.Summary -}}
-  {{- end -}}
-  {{- $more := "" -}}
-  {{- with $p.RawContent -}}
-    {{- $more = printf "<p class=\"feed-more\"><a href=\"%s\">Read more&nbsp;&rsaquo;</a></p>" $p.RelPermalink -}}
-  {{- end -}}
-  {{- $body = printf "%s%s" $lead $more -}}
+  {{- $lead = $p.Summary -}}
+{{- end -}}
+{{- $more := "" -}}
+{{- with $p.RawContent -}}
+  {{- $more = printf "<p class=\"feed-more\"><a href=\"%s\">Read more&nbsp;&rsaquo;</a></p>" $p.RelPermalink -}}
 {{- end -}}
 <article class="feed-entry" id="{{ $slug }}">
 	<header class="feed-head">
 		<div class="feed-meta">
 			<time class="feed-date" datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "2006 Jan 02" }}</time>
-			{{- if eq $scope "all" }}<span class="feed-type">{{ $itemType | strings.FirstUpper }}</span>{{ end -}}
+			<span class="feed-type">{{ $itemType | strings.FirstUpper }}</span>
 		</div>
 		<h2 class="feed-title">
-			{{- if eq $mode "link" }}<a class="feed-title-link" href="{{ $p.RelPermalink }}">{{ $p.Title | markdownify }}</a>
-			{{- else }}{{ $p.Title | markdownify }}{{ end -}}
+			<a class="feed-title-link" href="{{ $p.RelPermalink }}">{{ $p.Title | markdownify }}</a>
 		</h2>
 	</header>
 	<div class="feed-body">
-		{{ $body | safeHTML }}
+		{{ printf "%s%s" $lead $more | safeHTML }}
 	</div>
 </article>
