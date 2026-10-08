@@ -2,6 +2,7 @@
 {{ .Title | markdownify }}
 {{- end }}
 {{ define "main" -}}
+{{ .Content }}
 {{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
 {{- else if .Param "newsList" -}}
