@@ -383,10 +383,6 @@ img {
   display: block;
 }
 
-/* Figure sizes, opt in with class="figure--small" on the figure shortcodes.
-   Only the height cap is set, so the image keeps its aspect ratio and a narrow
-   viewport still shrinks it through max-width. figure--full lifts the width cap
-   for something that should span the column. */
 figure.figure--small img {
   max-height: 200px;
 }
@@ -404,8 +400,6 @@ figure.figure--full img {
   max-height: none;
 }
 
-/* The row variant is a flex container, so cap the width too: a short pair
-   inside a 620px row would otherwise stretch far wider than it needs. */
 .figures-row.figure--small img {
   max-width: 60%;
 }
@@ -497,11 +491,6 @@ footer {
   margin: 0 0 0.75rem;
 }
 
-/* Opt-in marker for top-level entries. Used where the top level is a set of
-   containers, each with its own nested detail (institutions on the CV), and
-   without a marker a run of them reads as one block. Presentations keeps the
-   unmarked structure, where a conference and its talks are distinguishable
-   already. */
 .outline-list--bullets > ul,
 .outline-list--bullets > ol {
   list-style: disc;
@@ -510,7 +499,6 @@ footer {
 
 .outline-list--bullets > ul > li::marker,
 .outline-list--bullets > ol > li::marker {
-  /* Muted so the marker does not compete with the bold accent entry text. */
   color: var(--text-muted);
   font-size: 0.85em;
 }

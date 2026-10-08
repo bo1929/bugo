@@ -1,7 +1,4 @@
-{{- /* Compact outline list.
-       `bullets="true"` marks the top level. Use it where the top level holds
-       containers with nested detail, and the entries would otherwise run
-       together; leave it off for a plain unmarked outline. */ -}}
+{{- /* Compact outline list. */ -}}
 <div class="outline-list{{ if .Page.Param "tightl" }} outline-list--tight{{ end }}{{ if eq ($.Get "bullets") "true" }} outline-list--bullets{{ end }}">
   {{ .Inner | markdownify }}
 </div>
