@@ -3,12 +3,12 @@
               src1="/images/a.jpg" title1="First caption"
               src2="/images/b.jpg" title2="Second caption" >}}
        Up to four pairs; each rendered as a plain <figure>.
-*/ -}}
+       Optional class="figure--small|medium|large|full" sizes the row. */ -}}
 {{- $n := 0 -}}
 {{- range $i := (seq 1 4) -}}
   {{- if $.Get (printf "src%d" $i) -}}{{- $n = $i -}}{{- end -}}
 {{- end -}}
-<div class="figures-row">
+<div class="figures-row{{ with $.Get "class" }} {{ . }}{{ end }}">
 {{- range $i := (seq 1 $n) }}
   {{- $src := $.Get (printf "src%d" $i) -}}
   {{- $title := $.Get (printf "title%d" $i) -}}

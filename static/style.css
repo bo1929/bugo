@@ -383,6 +383,41 @@ img {
   display: block;
 }
 
+/* Figure sizes, opt in with class="figure--small" on the figure shortcodes.
+   Only the height cap is set, so the image keeps its aspect ratio and a narrow
+   viewport still shrinks it through max-width. figure--full lifts the width cap
+   for something that should span the column. */
+figure.figure--small img {
+  max-height: 200px;
+}
+
+figure.figure--medium img {
+  max-height: 320px;
+}
+
+figure.figure--large img {
+  max-height: 620px;
+}
+
+figure.figure--full img {
+  max-width: 100%;
+  max-height: none;
+}
+
+/* The row variant is a flex container, so cap the width too: a short pair
+   inside a 620px row would otherwise stretch far wider than it needs. */
+.figures-row.figure--small img {
+  max-width: 60%;
+}
+
+.figures-row.figure--medium img {
+  max-width: 80%;
+}
+
+.figures-row.figure--large img {
+  max-width: 95%;
+}
+
 .site-content h2 {
   font-size: var(--font-section-h2);
   font-weight: 600;
