@@ -50,7 +50,7 @@
 </footer>
 {{ end }}
 </div>
-{{ if eq (.Param "feedScope") "all" }}{{ partial "tag-filter-script.html" . }}{{ end }}
+{{ if eq (.Param "feedScope") "all" }}{{ partial "type-filter-script.html" . }}{{ end }}
 {{ partial "mathjax.html" . }}
 </body>
 

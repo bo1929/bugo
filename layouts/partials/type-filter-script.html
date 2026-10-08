@@ -1,0 +1,38 @@
+{{- /* Inline so it can be emitted only on pages that render the filter.
+       Entries start visible: the script hides them, never reveals them, so with
+       JavaScript off every entry stays readable and the filter is simply
+       inert. */ -}}
+<script>
+(function () {
+  var root = document.querySelector('[data-type-filter]');
+  var list = document.querySelector('[data-feed-entries]');
+  if (!root || !list) return;
+
+  var chips = [].slice.call(root.querySelectorAll('.type-chip'));
+  var entries = [].slice.call(list.querySelectorAll('.feed-entry'));
+  var count = root.querySelector('[data-filter-count]');
+
+  function apply(type) {
+    var shown = 0;
+    entries.forEach(function (entry) {
+      var match = !type || entry.getAttribute('data-type') === type;
+      entry.hidden = !match;
+      if (match) shown++;
+    });
+    chips.forEach(function (chip) {
+      chip.classList.toggle('is-active', chip.getAttribute('data-type') === type);
+    });
+    if (count) {
+      count.textContent = type
+        ? shown + (shown === 1 ? ' item of type ' : ' items of type ') + type
+        : '';
+    }
+  }
+
+  root.addEventListener('click', function (event) {
+    var chip = event.target.closest('.type-chip');
+    if (!chip) return;
+    apply(chip.getAttribute('data-type'));
+  });
+})();
+</script>

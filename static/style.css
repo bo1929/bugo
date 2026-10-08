@@ -604,13 +604,13 @@ body.dark-mode .site-content .highlight {
 }
 
 /* Tag filter on the archive page */
-.tag-filter {
+.type-filter {
   margin: 0.5rem 0 1.75rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
 }
 
-.tag-filter-head {
+.type-filter-head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -618,18 +618,18 @@ body.dark-mode .site-content .highlight {
   margin-bottom: 0.4rem;
 }
 
-.tag-filter-label {
+.type-filter-label {
   font-size: var(--font-compact);
   line-height: var(--line-compact);
   color: var(--text-muted);
 }
 
-.tag-filter-count {
+.type-filter-count {
   font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-.tag-filter-list {
+.type-filter-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0 0.85rem;
@@ -638,7 +638,7 @@ body.dark-mode .site-content .highlight {
   list-style: none;
 }
 
-.tag-chip {
+.type-chip {
   font: inherit;
   font-size: 0.8125rem;
   line-height: 1.6;
@@ -652,18 +652,18 @@ body.dark-mode .site-content .highlight {
   text-underline-offset: 0.15em;
 }
 
-.tag-chip:hover {
+.type-chip:hover {
   color: var(--link);
   text-decoration-color: currentColor;
 }
 
-.tag-chip.is-active {
+.type-chip.is-active {
   color: var(--link);
   font-weight: 600;
   text-decoration-color: currentColor;
 }
 
-.tag-chip-n {
+.type-chip-n {
   opacity: 0.65;
 }
 
