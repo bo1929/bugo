@@ -457,8 +457,11 @@ footer {
 
 .outline-list > ul,
 .outline-list > ol {
-  list-style: none;
-  padding-left: 0;
+  /* Top-level entries are containers: an institution, a conference. The marker
+     separates one entry from the next, while the nested list holds the detail
+     underneath. Without it the entries run together. */
+  list-style: disc;
+  padding-left: 1.1rem;
   margin: 0 0 0.75rem;
 }
 
@@ -467,6 +470,13 @@ footer {
   margin-bottom: 0.65rem;
   line-height: var(--line-tight);
   color: var(--text);
+}
+
+.outline-list > ul > li::marker,
+.outline-list > ol > li::marker {
+  /* Muted so the marker does not compete with the bold accent entry text. */
+  color: var(--text-muted);
+  font-size: 0.85em;
 }
 
 .outline-list > ul > li > p {
