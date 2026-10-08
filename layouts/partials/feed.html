@@ -1,9 +1,4 @@
-{{- /* The all-items archive rendered at /posts/, driven by `feedScope: all`.
-       The filter narrows by item type (news, notes, resources), which is the
-       label each entry already carries. Buttons are inert without JavaScript:
-       the script only ever hides entries, so with JS off the full list shows. */ -}}
-{{- $sections := slice "news" "notes" "posts" -}}
-{{- $pages := where .Site.RegularPages "Section" "in" $sections -}}
+{{- $pages := where .Site.RegularPages "Params.itemType" "!=" nil -}}
 {{- $pages = $pages.ByDate.Reverse -}}
 {{- $types := dict -}}
 {{- range $pages -}}

@@ -27,15 +27,9 @@
   --link-hover: #012929;
   --bg: #fcf3f2;
   --border: rgba(46, 26, 71, 0.22);
-  /* Dates sit near the top of the text range rather than at --text-muted:
-     muted purple washes out against the warm background. Overridden for dark
-     mode in layouts/partials/toggle-night.html. */
   --date: #2b1a3d;
   --width-site: min(calc(90ch + 0.5rem), 100% - 7.5rem);
 
-  /* Mode switcher. The track carries the contrast and the thumb carries the
-     state, so the pill stays legible on either background. Overridden for
-     dark mode in layouts/partials/toggle-night.html. */
   --toggle-track: #241f2e;
   --toggle-thumb: #fcf3f2;
   --toggle-border: rgba(46, 26, 71, 0.3);
@@ -154,7 +148,6 @@ main {
   color: var(--date);
 }
 
-/* tightl: flat lists (publications, research bullets) */
 .site-content.tightl {
   font-size: var(--font-body);
   line-height: var(--line-tight);
@@ -184,7 +177,6 @@ main {
   margin-bottom: 0.35rem;
 }
 
-/* tightl + compact-list: top-level outline items only (nested subitems unchanged) */
 .site-content.tightl .outline-list > ul > li,
 .site-content.tightl .outline-list > ol > li {
   margin-bottom: 0.4rem;
@@ -195,7 +187,6 @@ main {
   margin-bottom: 0.45rem;
 }
 
-/* Home news/posts feed */
 .site-content ul.feed-list {
   list-style: none;
   padding-left: 0;
@@ -226,7 +217,6 @@ main {
   text-decoration: underline;
 }
 
-/* Scrollable feed: one article per item on /news/ and /posts/ */
 .site-content .feed-entry {
   margin: 0 0 2rem;
   padding-top: 1.1rem;
@@ -261,9 +251,6 @@ main {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-
-/* .feed-type (item type on archive entries) is styled with the other plain
-   text labels further down. */
 
 .site-content .feed-entry .feed-title {
   margin: 0.1rem 0 0;
@@ -311,7 +298,6 @@ main {
   line-height: var(--line-compact);
 }
 
-/* Inlined entries carry their own headings; keep them under the entry title */
 .site-content .feed-entry .feed-body h2 {
   font-size: var(--font-section-h3);
 }
@@ -328,9 +314,6 @@ main {
   font-size: var(--font-compact);
 }
 
-/* Blockquotes carry every paper abstract on the site. The feed only styles the
-   ones inside an entry body, so give them a baseline everywhere; the rule above
-   then overrides the tighter spacing inside feed entries. */
 .site-content blockquote {
   margin: 0.75rem 0;
   padding-left: 0.9rem;
@@ -364,7 +347,6 @@ figcaption h4 {
   color: var(--text-muted);
 }
 
-/* Side-by-side figure group (shortcode: figures-side-by-side) */
 .figures-row {
   display: flex;
   flex-wrap: wrap;
@@ -401,7 +383,6 @@ img {
   display: block;
 }
 
-/* Content headings (publications, presentations, posts, ...) */
 .site-content h2 {
   font-size: var(--font-section-h2);
   font-weight: 600;
@@ -474,7 +455,6 @@ footer {
   max-width: 33%;
 }
 
-/* Outline lists (presentations, CV) */
 .outline-list > ul,
 .outline-list > ol {
   list-style: none;
@@ -548,7 +528,6 @@ footer {
   overflow-x: auto;
 }
 
-/* Long command lines should scroll, not force the page to reflow. */
 .site-content .highlight pre,
 .site-content .highlight code {
   tab-size: 2;
@@ -573,8 +552,6 @@ body.dark-mode .site-content .highlight {
   border-color: rgba(255, 222, 173, 0.12);
 }
 
-/* Labels are plain text: no pills, no borders, no background. Used for the
-   item type (news, paper, notes) and for tags. */
 .label,
 .site-content .feed-type,
 .site-content .feed-tag {
@@ -667,12 +644,10 @@ body.dark-mode .site-content .highlight {
   opacity: 0.65;
 }
 
-/* Only hide once the script has run, so no-JS visitors see every entry. */
 .feed-entry[hidden] {
   display: none;
 }
 
-/* News list: short entries and long ones interleaved, newest first */
 .news-list {
   margin: 0.25rem 0 0;
   padding: 0;
@@ -718,8 +693,6 @@ body.dark-mode .site-content .highlight {
   font-weight: 600;
 }
 
-/* The one extra line a linked entry gets: a taste of what is on its page,
-   followed by the link to it. Both sit in the text column, never the date. */
 .news-more {
   display: block;
   margin-top: 0.15rem;

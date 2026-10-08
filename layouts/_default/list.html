@@ -6,9 +6,6 @@
 {{- if eq (.Param "feedScope") "all" -}}
 {{ partial "feed.html" . }}
 {{- else if .Param "newsList" -}}
-{{- /* One merged list: short entries from data/news.yaml and long ones from
-       content/news/*.md, interleaved newest first. Long entries get one extra
-       line underneath, a link to the page that holds them. */ -}}
 {{- $items := slice -}}
 {{- range .Site.Data.news -}}
   {{- $items = $items | append (dict "date" (.date | time) "text" .text "tag" .tag) -}}
