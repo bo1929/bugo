@@ -28,7 +28,7 @@
   --bg: #fcf3f2;
   --border: rgba(46, 26, 71, 0.22);
   --date: #2b1a3d;
-  --width-site: min(calc(90ch + 0.5rem), 100% - 7.5rem);
+  --width-site: min(calc(95ch + 0.75rem), 100% - 7.5rem);
 
   --toggle-track: #241f2e;
   --toggle-thumb: #fcf3f2;
