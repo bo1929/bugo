@@ -400,6 +400,24 @@ figure.figure--full img {
   max-height: none;
 }
 
+figure.figure--float-right {
+  float: right;
+  width: 40%;
+  max-width: 320px;
+  margin: 0.25rem 0 0.75rem 1.5rem;
+}
+
+figure.figure--float-right img {
+  max-width: 100%;
+}
+
+figure.figure--float-right figcaption h4 {
+  margin: 0.35rem 0 0;
+  font-size: inherit;
+  font-weight: 400;
+  color: inherit;
+}
+
 .figures-row.figure--small img {
   max-width: 60%;
 }
